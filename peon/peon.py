@@ -24,17 +24,12 @@ import os
 import stat
 import time
 import optparse
-from os.path import abspath, dirname, join
+
+from notify import Urgency, notify
 
 
 _checksum = 0
 _pattern = None
-
-
-class Urgency(object):
-    low = 0
-    normal = 1
-    critical = 2
 
 
 def _get_stats_from_filename(filename):
@@ -69,7 +64,7 @@ def something_has_changed(dir, pattern):
         return True
     return False
 
-    
+
 def clear_screen():
     if sys.platform == 'win32':
         os.system('cls')
@@ -90,7 +85,7 @@ def main():
     parser.add_option('-p', '--pattern', default='*.py', dest='pattern',
                       help='the glob pattern to watch for changes. '\
                             '(default is "*.py)"')
-    parser.add_option('--no-reset', default=True, dest='reset', action="store_false", 
+    parser.add_option('--no-reset', default=True, dest='reset', action="store_false",
                       help='do not clear the screen between runs. '\
                             '(default is True)')
     options, args = parser.parse_args()
@@ -125,26 +120,26 @@ def main():
         return
 
 
-def notify(title, message, image, urgency=Urgency.normal):
-    try:
-        import pynotify
-    except:
-        return
-
-    urgencies = {
-        Urgency.low: pynotify.URGENCY_LOW,
-        Urgency.normal: pynotify.URGENCY_NORMAL,
-        Urgency.critical: pynotify.URGENCY_CRITICAL,
-    }
-
-    if pynotify.init("Nosy"):
-        n = pynotify.Notification(title,
-                                  message,
-                                  abspath(join(dirname(__file__), image)))
-        n.set_urgency(urgencies[urgency])
-        n.show()
-        time.sleep(2)
-        n.close()
+# def notify(title, message, image, urgency=Urgency.normal):
+#     try:
+#         import pynotify
+#     except:
+#         return
+# 
+#     urgencies = {
+#         Urgency.low: pynotify.URGENCY_LOW,
+#         Urgency.normal: pynotify.URGENCY_NORMAL,
+#         Urgency.critical: pynotify.URGENCY_CRITICAL,
+#     }
+# 
+#     if pynotify.init("Nosy"):
+#         n = pynotify.Notification(title,
+#                                   message,
+#                                   abspath(join(dirname(__file__), image)))
+#         n.set_urgency(urgencies[urgency])
+#         n.show()
+#         time.sleep(2)
+#         n.close()
 
 if __name__ == '__main__':
     sys.exit(main())
