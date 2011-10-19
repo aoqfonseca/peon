@@ -113,7 +113,8 @@ def main():
                             urgency=Urgency.critical)
                 elif is_build_broken:
                     is_build_broken = False
-                    notify("Build fixed",
+                    notify(APP_NAME,
+                           "Build fixed",
                            "Your build with command '%s' IS FIXED!" % command,
                            "tick.png")
 
@@ -121,27 +122,6 @@ def main():
     except KeyboardInterrupt:
         return
 
-
-# def notify(title, message, image, urgency=Urgency.normal):
-#     try:
-#         import pynotify
-#     except:
-#         return
-# 
-#     urgencies = {
-#         Urgency.low: pynotify.URGENCY_LOW,
-#         Urgency.normal: pynotify.URGENCY_NORMAL,
-#         Urgency.critical: pynotify.URGENCY_CRITICAL,
-#     }
-# 
-#     if pynotify.init("Nosy"):
-#         n = pynotify.Notification(title,
-#                                   message,
-#                                   abspath(join(dirname(__file__), image)))
-#         n.set_urgency(urgencies[urgency])
-#         n.show()
-#         time.sleep(2)
-#         n.close()
 
 if __name__ == '__main__':
     sys.exit(main())

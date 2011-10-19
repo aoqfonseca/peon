@@ -18,7 +18,6 @@ def notify(app_name, title, message, image, urgency=Urgency.normal):
 def notify_growl(app_name, title, message, image, urgency=Urgency.normal):
 
     try:
-        import md5
         import Growl
     except ImportError:
         return
@@ -27,6 +26,7 @@ def notify_growl(app_name, title, message, image, urgency=Urgency.normal):
     icon = {'applicationIcon': Growl.Image.imageFromPath(path_image)}
 
     growl = Growl.GrowlNotifier(app_name, [app_name], **icon)
+    growl.register()
     growl.notify(app_name, title, message)
 
 def notify_pynotify(app_name, title, message, image, urgency=Urgency.normal):
