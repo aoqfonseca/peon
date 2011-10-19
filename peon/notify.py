@@ -16,7 +16,9 @@ def notify(app_name, title, message, image, urgency=Urgency.normal):
         return
 
 def notify_growl(app_name, title, message, image, urgency=Urgency.normal):
+
     try:
+        import md5
         import Growl
     except ImportError:
         return
