@@ -1,10 +1,12 @@
 from os.path import abspath, dirname, join
 import time
 
+
 class Urgency(object):
     low = 0
     normal = 1
     critical = 2
+
 
 def notify(app_name, title, message, image, urgency=Urgency.normal):
     try:
@@ -19,7 +21,6 @@ def notify_growl(app_name, title, message, image, urgency=Urgency.normal):
     except ImportError:
         return
 
-    global growl
     path_image = abspath(join(dirname(__file__), image))
     icon = {'applicationIcon': Growl.Image.imageFromPath(path_image)}
 

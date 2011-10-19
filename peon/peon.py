@@ -30,6 +30,7 @@ from notify import Urgency, notify
 
 _checksum = 0
 _pattern = None
+APP_NAME = "Peon"
 
 
 def _get_stats_from_filename(filename):
@@ -103,7 +104,8 @@ def main():
                 status = os.system(command)
                 if status != 0:
                     is_build_broken = True
-                    notify("Broken build",
+                    notify(APP_NAME,
+                            "Broken build",
                             "Your command of '%s' returned exit"\
                             "code '%s'. Please verify the console output for"\
                             "more info." % (command, status),
