@@ -13,6 +13,17 @@ Just install using::
 
     python setup.py install
 
+You can install from pip: 
+    
+    pip install peon
+
+If you intend using this in Mac, you need to install py-Growl for Growl Notification
+
+Configuring Growl
+-----------------
+
+To use Growl, you need to configure him to allow listening incoming notification (Network)
+
 Using
 -----
 
