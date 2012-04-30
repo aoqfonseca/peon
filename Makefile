@@ -5,3 +5,9 @@ install:
 
 test:
 	specloud tests
+
+deps:
+	@pip install -r requirements.txt
+
+ci: deps test
+
